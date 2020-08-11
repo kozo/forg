@@ -1,0 +1,19 @@
+{
+    "name": "kozo/forg",
+    "description": "description",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "kozo",
+            "email": "kozo.sakuragawa@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "autoload" : {
+        "psr-4" : {
+
+        }
+    }
+}
