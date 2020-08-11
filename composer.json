@@ -1,5 +1,5 @@
 {
-    "name": "kozo/forg",
+    "name": "kozo/shield",
     "description": "description",
     "minimum-stability": "stable",
     "license": "proprietary",
@@ -13,7 +13,14 @@
     },
     "autoload" : {
         "psr-4" : {
-
+            "Shield\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Shield\\Providers\\ShieldServiceProvider"
+            ]
         }
     }
 }
