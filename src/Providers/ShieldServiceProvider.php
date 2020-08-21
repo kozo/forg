@@ -2,7 +2,10 @@
 
 namespace Shield\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Shield\View\Components\Close;
+use Shield\View\Components\Open;
 use Shield\View\Components\Text;
 
 class ShieldServiceProvider extends ServiceProvider
@@ -24,10 +27,20 @@ class ShieldServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // App\resources/views/vendor/shieldのパスも登録される
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'shield');
+
+        // @todo : ここ設定ファイルとかに切り出さないと拡張が出来ない？
         $this->loadViewComponentsAs('shield', [
-            Text::class
+            Text::class,
+            Open::class,
+            Close::class
         ]);//*/
-        //Blade::component('shield-text', Text::class);
+
+        // @todo : ここも設定ファイルに切り出せば呼び出せる？
+        // これで無名コンポーネントを呼び出せる(第1引数: bladeファイル、第2引数 : エイリアス)
+        Blade::component('shield::components.hoge', 'shield-hoge');
+
+        // publishesを定義する
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\View\Component;
  * https://github.com/tomsix/laravel-components-library
  * これを参考にする
  */
-class Text extends Component
+class Delete extends Component
 {
     public $id;
     public $name;
