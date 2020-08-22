@@ -17,7 +17,9 @@ class ShieldServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(
+            __DIR__ . '/../../config/shield.php', 'shield'
+        );
     }
 
     /**
@@ -42,5 +44,8 @@ class ShieldServiceProvider extends ServiceProvider
         Blade::component('shield::components.hoge', 'shield-hoge');
 
         // publishesを定義する
+        $this->publishes([
+            __DIR__ . '/../../config/shield.php' => config_path('shield.php'),
+        ]);
     }
 }
