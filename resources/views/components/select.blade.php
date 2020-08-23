@@ -1,4 +1,4 @@
-<select id="{{ $id }}" class="{{ $class }}" name="{{ $name }}" {{ $multipled() }}>
+<select id="{{ $id }}" class="{{ $class }}" name="{{ $name }}" {{ $attributes }} {{ $multipled() }}>
     @if($empty === true)
     <option value="">{{ $emptyText }}</option>
     @endif;

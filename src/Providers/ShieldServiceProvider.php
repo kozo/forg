@@ -10,6 +10,7 @@ use Shield\View\Components\Open;
 use Shield\View\Components\Radio;
 use Shield\View\Components\Select;
 use Shield\View\Components\Text;
+use Shield\View\Components\Textarea;
 
 class ShieldServiceProvider extends ServiceProvider
 {
@@ -43,6 +44,7 @@ class ShieldServiceProvider extends ServiceProvider
             Select::class,
             Radio::class,
             Checkbox::class,
+            Textarea::class,
         ]);//*/
 
         // @todo : ここも設定ファイルに切り出せば呼び出せる？

@@ -3,7 +3,7 @@
 -->
 @foreach ($options as $value=>$text)
 <div class="form-check">
-    <input class="form-check-input" type="radio" name="{{ $name }}" id="{{ $id . '_' . $loop->index }}" value="{{ $value }}">
+    <input class="form-check-input" type="radio" name="{{ $name }}" id="{{ $id . '_' . $loop->index }}" value="{{ $value }}" {{ $attributes }} >
     <label class="form-check-label" for="{{ $id . '_' . $loop->index }}">
         {{ $text }}
     </label>
