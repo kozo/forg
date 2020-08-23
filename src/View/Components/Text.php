@@ -20,9 +20,11 @@ class Text extends BaseComponent
     /**
      * Create a new component instance.
      *
-     * @param $target
      * @param string $name
-     * @param $aaa
+     * @param string|null $id
+     * @param string|null $class
+     * @param string|null $value
+     * @param string|null $defaultValue
      */
     public function __construct($name, $id=null, $class=null, $value=null, $defaultValue=null)
     {
