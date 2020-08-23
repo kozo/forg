@@ -4,6 +4,7 @@ namespace Shield\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Shield\View\Components\Checkbox;
 use Shield\View\Components\Close;
 use Shield\View\Components\Open;
 use Shield\View\Components\Radio;
@@ -34,13 +35,14 @@ class ShieldServiceProvider extends ServiceProvider
         // App\resources/views/vendor/shieldのパスも登録される
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'shield');
 
-        // @todo : ここ設定ファイルとかに切り出さないと拡張が出来ない？
+        // @todo : ここ設定ファイルとかに切り出さないと拡張が出来ない
         $this->loadViewComponentsAs('shield', [
             Open::class,
             Close::class,
             Text::class,
             Select::class,
             Radio::class,
+            Checkbox::class,
         ]);//*/
 
         // @todo : ここも設定ファイルに切り出せば呼び出せる？
