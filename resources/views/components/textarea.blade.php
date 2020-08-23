@@ -1,4 +1,7 @@
 <!--
-  - row, colを設定とパラメーターに切り出し
+  - colsは不要かも
 -->
-<textarea id="{{ $id }}" class="{{ $class }}" name="{{ $name }}" rows="3" {{ $attributes }}>{{ $value }}</textarea>
+<textarea id="{{ $id }}" class="{{ $class }}" name="{{ $name }}" rows="{{ $getConfig('textarea.rows') }}" cols="{{ $getConfig('textarea.cols') }}" {{ $attributes }}>{{ $value }}</textarea>
+@error($name)
+<div class="{{ $errorClass() }}">{{ $message }}</div>
+@enderror

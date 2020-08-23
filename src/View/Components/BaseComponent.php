@@ -112,4 +112,9 @@ abstract class BaseComponent extends Component
     {
         return config('shield.error_message_class');
     }
+
+    public function getConfig($name)
+    {
+        return config('shield.' . $name);
+    }
 }
