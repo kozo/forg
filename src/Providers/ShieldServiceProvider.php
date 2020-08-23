@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Shield\View\Components\Close;
 use Shield\View\Components\Open;
+use Shield\View\Components\Radio;
 use Shield\View\Components\Select;
 use Shield\View\Components\Text;
 
@@ -39,6 +40,7 @@ class ShieldServiceProvider extends ServiceProvider
             Close::class,
             Text::class,
             Select::class,
+            Radio::class,
         ]);//*/
 
         // @todo : ここも設定ファイルに切り出せば呼び出せる？

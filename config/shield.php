@@ -2,5 +2,6 @@
 
 return [
     'default_class' => 'form-control',
-    'error_class' => 'has-error'
+    'has_error_class' => 'has-error',
+    'error_message_class' => 'alert alert-danger',
 ];

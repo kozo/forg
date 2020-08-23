@@ -1,4 +1,4 @@
-<select id="{{ $id }}" class="{{ $class }}" name="{{ $name }}">
+<select id="{{ $id }}" class="{{ $class }}" name="{{ $name }}" {{ $multipled() }}>
     @if($empty === true)
     <option value="">{{ $emptyText }}</option>
     @endif;
@@ -7,5 +7,5 @@
     @endforeach
 </select>
 @error($name)
-<div class="alert alert-danger">{{ $message }}</div>
+<div class="{{ $errorClass() }}">{{ $message }}</div>
 @enderror

@@ -84,7 +84,7 @@ abstract class BaseComponent extends Component
         }
 
         if ($this->isError($name)) {
-            $classAttributes[] = config('shield.error_class');
+            $classAttributes[] = config('shield.has_error_class');
         }
 
         return $classAttributes;
@@ -103,5 +103,13 @@ abstract class BaseComponent extends Component
 
         $errorKeys = $errors->getBag('default')->keys();
         return in_array($name, $errorKeys, true);
+    }
+
+    /**
+     * @return \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed
+     */
+    public function errorClass()
+    {
+        return config('shield.error_message_class');
     }
 }

@@ -18,6 +18,7 @@ class Select extends BaseComponent
     public $value;
     public $class;
     public $empty;
+    public $multiple;
 
     public $emptyText = 'Please select one.';
 
@@ -31,12 +32,13 @@ class Select extends BaseComponent
      * @param string|null $value
      * @param string|null $defaultValue
      */
-    public function __construct($name, $options, $id=null, $class=null, $value=null, $defaultValue=null, $empty=false)
+    public function __construct($name, $options, $id=null, $class=null, $value=null, $defaultValue=null, $empty=false, $multiple=false)
     {
 
         $this->name = $name;
         $this->options = $options;
         $this->empty = $this->isEmpty($empty);
+        $this->multiple = $multiple;
 
         $this->class = $this->generateClassAttribute($name, $class);
 
@@ -69,6 +71,18 @@ class Select extends BaseComponent
     {
         if ($option == $this->value) {
             return 'selected';
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function multipled(): string
+    {
+        if ($this->multiple === true) {
+            return 'multiple';
         } else {
             return '';
         }
