@@ -37,6 +37,7 @@ class Text extends BaseComponent
 
         $this->value = $this->getValue($name, $value, $defaultValue);
 
+        $this->createName();
         // 動かないときはキャッシュ？
         // php artisan view:clear
 
@@ -54,7 +55,49 @@ class Text extends BaseComponent
      */
     public function render()
     {
+        $list = $this->generatePathList();
+
+        foreach ($list as $path) {
+            try {
+                return view($path);
+            } catch (\Exception $e) {
+                // nothing to do
+            }
+        }
+
         //dump($this->data()['attributes']);
-        return view('shield::components.text');
+        //return view('shield::components.text');
+    }
+
+    private function generatePathList()
+    {
+        $list = [
+            'shield::components.' . $this->name,
+            'shield::components.text'
+        ];
+
+        return array_unique($list);
+    }
+
+    private function createName()
+    {
+        $request = \Request();
+        $prefix = $request->route()->getPrefix();
+
+        $classFullName = get_class($this);
+        $list = explode('\\', $classFullName);
+        $className = strtolower(end($list));
+
+        if (substr($prefix, 0, 1) === '/') {
+            $prefix = ltrim($prefix, '/');
+        }
+
+        if ($prefix !== '') {
+            $prefix = str_replace('/', '.', $prefix);
+            $prefix .= '.';
+        }
+
+        $name = sprintf("%s%s", $prefix, $className);
+        $this->name = $name;
     }
 }
