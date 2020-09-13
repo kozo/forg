@@ -2,6 +2,8 @@
 
 namespace Shield\View\Components;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Shield\ClassAttributeBag;
 
@@ -30,14 +32,19 @@ abstract class BaseComponent extends Component
     protected function getValue($name, $attrValue, $defaultValue)
     {
         $oldList = old();
-        if (array_key_exists($name, $oldList)) {
-            return $oldList[$name];
+
+        $dotName = $this->parseArrayToDot($name);
+        $oldValue = Arr::get($oldList, $dotName);
+        //if (array_key_exists($name, $oldList)) {
+        if ($oldValue !== null) {
+            return $oldValue;
         }
 
         if ($attrValue !== null) {
             return $attrValue;
         }
 
+        // @todo : get relation value
         $model = Open::model();
         $value = $model->{$name} ?? null;
         if ($value !== null) {
@@ -100,9 +107,21 @@ abstract class BaseComponent extends Component
         if (empty($errors)) {
             return false;
         }
+        $dotName = $this->parseArrayToDot($name);
+        /*dump($name);
+        dump($errors);exit;//*/
+
+        /*
+         * $array = ['products' => ['desk' => ['price' => 100]]];
+           $flattened = Arr::dot($array);
+           // ['products.desk.price' => 100]
+         */
+        //Arr::dot($array);
 
         $errorKeys = $errors->getBag('default')->keys();
-        return in_array($name, $errorKeys, true);
+        //dump($dotName);
+        //dump($errorKeys);
+        return in_array($dotName, $errorKeys, true);
     }
 
     /**
@@ -116,5 +135,15 @@ abstract class BaseComponent extends Component
     public function getConfig($name)
     {
         return config('shield.' . $name);
+    }
+
+    public function parseArrayToDot($name)
+    {
+        $contains = Str::contains($name, '[');
+        if ($contains === false)  {
+            return $name;
+        }
+        $str = Str::of($name)->replace('[', '.')->replace(']', '');
+        return (string)$str;
     }
 }

@@ -6,6 +6,6 @@
     <option value="{{ $value }}" {{ $selected($value) }}>{{ $text }}</option>
     @endforeach
 </select>
-@error($name)
+@error($parseArrayToDot($name))
 <div class="{{ $errorClass() }}">{{ $message }}</div>
 @enderror

@@ -7,7 +7,7 @@
     <label class="form-check-label" for="{{ $id . '_' . $loop->index }}">
         {{ $text }}
     </label>
-    @error($name)
+    @error($parseArrayToDot($name))
     <div class="{{ $errorClass() }}">{{ $message }}</div>
     @enderror
 </div>

@@ -16,6 +16,7 @@ class Text extends BaseComponent
     public $name;
     public $value;
     public $class;
+    public $type;
 
     /**
      * Create a new component instance.
@@ -37,7 +38,7 @@ class Text extends BaseComponent
 
         $this->value = $this->getValue($name, $value, $defaultValue);
 
-        $this->createName();
+        $this->type = $this->createType();
         // 動かないときはキャッシュ？
         // php artisan view:clear
 
@@ -79,7 +80,7 @@ class Text extends BaseComponent
         return array_unique($list);
     }
 
-    private function createName()
+    private function createType()
     {
         $request = \Request();
         $prefix = $request->route()->getPrefix();
@@ -97,7 +98,6 @@ class Text extends BaseComponent
             $prefix .= '.';
         }
 
-        $name = sprintf("%s%s", $prefix, $className);
-        $this->name = $name;
+        return sprintf("%s%s", $prefix, $className);;
     }
 }
